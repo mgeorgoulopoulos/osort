@@ -17,7 +17,6 @@ jobs:
       working-directory: ${{github.workspace}}
       shell: cmd
       run: "build.bat"
-	  
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
