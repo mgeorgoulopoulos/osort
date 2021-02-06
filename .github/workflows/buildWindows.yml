@@ -1,0 +1,29 @@
+name: Build and upload binary release
+
+on: [push]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+  CXX: g++-4.2
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build and pack
+      working-directory: ${{github.workspace}}
+      shell: cmd
+      run: "build.bat"
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{github.workspace}}/osort.zip
+        asset_name: osort.zip
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "Automatically generated release"
