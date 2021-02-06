@@ -1,4 +1,4 @@
-name: CMake
+name: Build and upload binary release
 
 on: [push]
 
@@ -8,10 +8,6 @@ env:
 
 jobs:
   build:
-    # The CMake configure and build commands are platform agnostic and should work equally
-    # well on Windows or Mac.  You can convert this to a matrix build if you need
-    # cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: windows-latest
 
     steps:
@@ -21,15 +17,13 @@ jobs:
       working-directory: ${{github.workspace}}
       shell: cmd
       run: "build.bat"
-    - name: Create Release
-      id: automatic_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+	  
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        body: |
-          Automatically generated release from latest push
-        draft: false
-        prerelease: false
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{github.workspace}}/osort.zip
+        asset_name: osort
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "Automatically generated release"
