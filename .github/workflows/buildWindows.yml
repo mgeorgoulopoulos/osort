@@ -22,7 +22,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ${{github.workspace}}/osort.zip
-        asset_name: osort
+        asset_name: osort.zip
         tag: ${{ github.ref }}
         overwrite: true
         body: "Automatically generated release"
