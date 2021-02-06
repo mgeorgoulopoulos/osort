@@ -21,13 +21,15 @@ jobs:
       working-directory: ${{github.workspace}}
       shell: cmd
       run: "build.bat"
-
-    - name: Build
-      working-directory: ${{github.workspace}}/build
-      shell: bash
-      # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: cmake --build . --config $BUILD_TYPE
-    - uses: actions/upload-artifact@v2
+    - name: Create Release
+      id: automatic_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        name: osort-release
-        path: ${{github.workspace}}/osort.zip
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: |
+          Automatically generated release from latest push
+        draft: false
+        prerelease: false
