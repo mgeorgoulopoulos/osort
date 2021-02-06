@@ -19,7 +19,7 @@ jobs:
 
     - name: Build and pack
       working-directory: ${{github.workspace}}
-      run: build.bat
+      run: call "build.bat"
 
     - name: Build
       working-directory: ${{github.workspace}}/build
