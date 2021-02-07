@@ -1,5 +1,6 @@
 # osort
-Opition sorting utility.
+Opition
+![Latest release](https://github.com/mgeorgoulopoulos/osort/workflows/latest-release.yml/badge.svg)
 
 * Write a list of things in a text file.
 * Pass the text file to osort.exe
