@@ -1,7 +1,7 @@
 # osort
 Opition sorting utility.
 
-![Latest build](https://github.com/mgeorgoulopoulos/osort/workflows/Build%20and%20upload%20binary%20release/badge.svg)
+![Latest build](https://github.com/mgeorgoulopoulos/osort/workflows/Auto%20build/badge.svg)
 
 * Write a list of things in a text file.
 * Pass the text file to osort.exe
