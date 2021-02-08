@@ -2,6 +2,7 @@
 Opition sorting utility.
 
 ![Latest build](https://github.com/mgeorgoulopoulos/osort/workflows/Auto%20build/badge.svg)
+
 [Hall of Fame](https://github.com/mgeorgoulopoulos/osort/wiki/Hall-of-Fame)
 
 * Write a list of things in a text file.
