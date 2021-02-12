@@ -219,7 +219,13 @@ static bool loadLines(const string &filename, vector<string> &lines) {
 }
 
 // Loads the cache.txt file if present and prepares the cache.
-static void loadAndApplyCache() {
+static void loadAndApplyCache(const vector<string> &elements) {
+	// Convert it to a set for easy searches
+	set<string> elementSet;
+	for (const string &element : elements) {
+		elementSet.insert(element);
+	}
+
 	vector<string> responses;
 	if (!loadLines(CACHE_FILENAME, responses)) {
 		return;
@@ -228,11 +234,17 @@ static void loadAndApplyCache() {
 	for (const string &r : responses) {
 		const string greater = r.substr(0, r.find(GE_SEPARATOR));
 		const string smaller = r.substr(greater.size() + 1);
+
+		if (elementSet.find(greater) == elementSet.end() ||
+			elementSet.find(smaller) == elementSet.end()) {
+			// Ignore this response - it is irrelevant
+			continue;
+		}
+
 		cout << "Loading cached: " << greater << " > " << smaller << endl;
 		updateKnowns(greater, smaller);
+		questions++;
 	}
-
-	questions += (int) responses.size();
 }
 
 int main(int argc, char *argv[]) {
@@ -246,7 +258,12 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	loadAndApplyCache();
+	loadAndApplyCache(elements);
+	if (questions > 0) {
+		cout << questions << " questions automatically retrieved from cache"
+			 << endl
+			 << "Delete cache.txt in order to start over" << endl;
+	}
 
 	// Ask a balanced set of questions first
 	preprocess(elements);
