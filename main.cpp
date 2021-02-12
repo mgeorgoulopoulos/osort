@@ -291,11 +291,13 @@ int main(int argc, char *argv[]) {
 	outputFile.close();
 
 
+#ifdef WIN32
 	// Show the file to user
 	system((string("start ") + outputFilename).c_str());
 
 	// Wait for keypress
 	system("pause");
+#endif
 
 	return 0;
 }
