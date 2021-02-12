@@ -3,6 +3,8 @@ Opition sorting utility.
 
 ![Latest build](https://github.com/mgeorgoulopoulos/osort/workflows/Auto%20build/badge.svg)
 
+[Hall of Fame](https://github.com/mgeorgoulopoulos/osort/wiki/Hall-of-Fame)
+
 * Write a list of things in a text file.
 * Pass the text file to osort.exe
 * Answer the questions.
@@ -67,3 +69,5 @@ It can be really painful when you happen to answer 100 questions and one of them
 I'm putting this on Github in the hopes that someone can use it and have fun with it.
 
 If nothing else, you could check out my list of obscure anime in TestList.txt. They are awesome!
+
+Also, feel free to browse the [Hall of Fame](https://github.com/mgeorgoulopoulos/osort/wiki/Hall-of-Fame) where I'll be putting results of stuff that other people sort.
